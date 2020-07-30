@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">IPAStudy</string>
+    <string name="hardware">hardware</string>
+    <string name="todo">やることを選んで下さい</string>
+    <string name="field_selection">勉強内容を選んでください</string>
+    <string name="study">教科書を読む</string>
+    <string name="question">問題を解く</string>
+    <string name="range">どの範囲を勉強しますか？</string>
+</resources>

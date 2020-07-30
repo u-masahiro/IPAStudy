@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/pagerBaseFragment">
+
+    <fragment
+        android:id="@+id/pagerBaseFragment"
+        android:name="com.example.ipastudy.view.PagerBaseFragment"
+        android:label="fragment_pager_base"
+        tools:layout="@layout/fragment_pager_base">
+        <action
+            android:id="@+id/action_pagerBaseFragment_to_hardWareBaseFragment"
+            app:destination="@id/hardWareBaseFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/hardWareBaseFragment"
+        android:name="com.example.ipastudy.view.HardWareBaseFragment"
+        android:label="fragment_hardware_base"
+        tools:layout="@layout/fragment_hardware_base">
+        <action
+            android:id="@+id/action_hardWareBaseFragment_to_hardwareStudyFragment"
+            app:destination="@id/hardWareStudyFragment" />
+        <action
+            android:id="@+id/action_hardWareBaseFragment_to_hardwareQuestionFragment"
+            app:destination="@id/hardWareQuestionFragment" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/hardWareStudyFragment"
+        android:name="com.example.ipastudy.view.HardWareStudyFragment"
+        android:label="fragment_hardware_study"
+        tools:layout="@layout/fragment_hardware_study">
+    </fragment>
+
+    <fragment
+        android:id="@+id/hardWareQuestionFragment"
+        android:name="com.example.ipastudy.view.HardWareQuestionFragment"
+        android:label="fragment_hardware_question"
+        tools:layout="@layout/fragment_hardware_question">
+        <action
+            android:id="@+id/action_hardWareQuestionFragment_to_hardwareQuestion1Fragment"
+            app:destination="@id/hardWareQuestion1Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/hardWareQuestion1Fragment"
+        android:name="com.example.ipastudy.view.HardwareQuestion1Fragment"
+        android:label="fragment_hardware_question1"
+        tools:layout="@layout/fragment_hardware_question_1">
+        <action
+            android:id="@+id/action_hardWareQuestion1Fragment_to_hardWareResultFragment"
+            app:destination="@id/hardWareResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/hardWareResultFragment"
+        android:name="com.example.ipastudy.view.HardWareResultFragment"
+        android:label="fragment_hardware_result"
+        tools:layout="@layout/fragment_hardware_result">
+    </fragment>
+
+</navigation>
