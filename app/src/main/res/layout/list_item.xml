@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="結果"
+        android:textSize="20sp"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:id="@+id/item_result_right_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3 / 5"
+        android:textSize="30sp"
+        android:layout_marginTop="60dp"
+        />
+
+    <TextView
+        android:id="@+id/item_result_total_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="トータルスコア : 333"
+        android:textSize="20sp"
+        android:layout_marginTop="60dp"/>
+
+</LinearLayout>

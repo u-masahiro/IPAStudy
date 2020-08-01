@@ -1,18 +1,20 @@
 package com.example.ipastudy.view
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels as activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.ipastudy.R
+import com.example.ipastudy.viewModel.ScoreViewModel
+import android.widget.TextView
+import com.example.ipastudy.model.Score
 import kotlinx.android.synthetic.main.fragment_hardware_question_1.*
 import java.util.*
 import kotlin.collections.ArrayList
-
+import android.app.AlertDialog
 
 class HardwareQuestion1Fragment : Fragment() {
 
@@ -22,10 +24,12 @@ class HardwareQuestion1Fragment : Fragment() {
     private var rightAnswer: String? = null
     private var rightAnswerCount = 0
     private var quizCount = 1
-    private val QUIZ_COUNT = 2
+    val QUIZ_COUNT = 2
     private var alertTitle: String? = null
-
     var quizArray: ArrayList<ArrayList<String>> = ArrayList()
+
+    private val viewModel: ScoreViewModel by activityViewModels()
+
     private var quizData = arrayOf(
         arrayOf(
             "コンピュータは入力,記憶,演算,制御及び出力の五つの機能を実現する各装置から取り出され、どの装置で解釈されるか",
@@ -36,6 +40,8 @@ class HardwareQuestion1Fragment : Fragment() {
             "プログラム格納方式", "DMA制御方式", "アドレス指定方式", "仮想記憶方式"
         )
     )
+
+    //private var bundle = Bundle()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,7 +79,7 @@ class HardwareQuestion1Fragment : Fragment() {
         countLabel?.text = "Q$quizCount"
 
         // ランダムな数字を取得
-        val random = Random(1)
+        val random = Random(2)
         val randomNum = random.nextInt(quizArray.size)
 
         // randomNumを使って、quizArrayからクイズを一つ取り出す
@@ -90,7 +96,6 @@ class HardwareQuestion1Fragment : Fragment() {
 
         // 正解と選択肢３つをシャッフル
         quiz.shuffle();
-
         // 回答ボタンに正解と選択肢３つを表示
         answerBtn1?.text = quiz[0]
         answerBtn2?.text = quiz[1]
@@ -105,19 +110,18 @@ class HardwareQuestion1Fragment : Fragment() {
         answerBtn1.setOnClickListener {
             val btnText: String = answerBtn1.text.toString()
             if (btnText == rightAnswer) {
-                alertTitle = "正解!";
-                rightAnswerCount++;
+                alertTitle = "正解!"
+                rightAnswerCount++
             } else {
-                alertTitle = "不正解...";
+                alertTitle = "不正解..."
             }
             AlertDialog.Builder(activity) // FragmentではActivityを取得して生成
                 .setTitle(alertTitle)
                 .setMessage("答え : " + rightAnswer)
                 .setPositiveButton("OK") { dialog, which ->
                     if (quizCount == QUIZ_COUNT) {
-                        findNavController().navigate(R.id.hardWareResultFragment)
-                        val bundle = Bundle()
-                        bundle.putInt("RIGHT_ANSWER_COUNT", rightAnswerCount);
+                       register()
+                        //bundle.putInt("RIGHT_ANSWER_COUNT", rightAnswerCount);
                     } else {
                         quizCount++
                         showNextQuiz()
@@ -138,9 +142,8 @@ class HardwareQuestion1Fragment : Fragment() {
                 .setMessage("答え : " + rightAnswer)
                 .setPositiveButton("OK") { dialog, which ->
                     if (quizCount == QUIZ_COUNT) {
-                        findNavController().navigate(R.id.hardWareResultFragment)
-                        val bundle = Bundle()
-                        bundle.putInt("RIGHT_ANSWER_COUNT", rightAnswerCount);
+                        register()
+                        //bundle.putInt("RIGHT_ANSWER_COUNT", rightAnswerCount);
                     } else {
                         quizCount++
                         showNextQuiz()
@@ -162,9 +165,8 @@ class HardwareQuestion1Fragment : Fragment() {
                 .setMessage("答え : " + rightAnswer)
                 .setPositiveButton("OK") { dialog, which ->
                     if (quizCount == QUIZ_COUNT) {
-                        findNavController().navigate(R.id.hardWareResultFragment)
-                        val bundle = Bundle()
-                        bundle.putInt("RIGHT_ANSWER_COUNT", rightAnswerCount);
+                        register()
+                        //bundle.putInt("RIGHT_ANSWER_COUNT", rightAnswerCount);
                     } else {
                         quizCount++
                         showNextQuiz()
@@ -175,19 +177,18 @@ class HardwareQuestion1Fragment : Fragment() {
         answerBtn4.setOnClickListener {
             val btnText: String = answerBtn4.text.toString()
             if (btnText == rightAnswer) {
-                alertTitle = "正解!";
-                rightAnswerCount++;
+                alertTitle = "正解!"
+                rightAnswerCount++
             } else {
-                alertTitle = "不正解...";
+                alertTitle = "不正解..."
             }
             AlertDialog.Builder(activity) // FragmentではActivityを取得して生成
                 .setTitle(alertTitle)
                 .setMessage("答え : " + rightAnswer)
                 .setPositiveButton("OK") { dialog, which ->
                     if (quizCount == QUIZ_COUNT) {
-                        findNavController().navigate(R.id.hardWareResultFragment)
-                        val bundle = Bundle()
-                        bundle.putInt("RIGHT_ANSWER_COUNT", rightAnswerCount);
+                        register()
+                        //bundle.putInt("RIGHT_ANSWER_COUNT", rightAnswerCount)
                     } else {
                         quizCount++
                         showNextQuiz()
@@ -195,8 +196,19 @@ class HardwareQuestion1Fragment : Fragment() {
                 }
                 .show()
         }
-
     }
+    private fun register() {
+        val score = Score(rightAnswerCount,rightAnswerCount)
+        viewModel.setScores(score)
+        findNavController().navigate(R.id.hardWareResultFragment)
+    }
+        // Fragmentに値をセットする
+        //val fragment = HardWareResultFragment()
+        //fragment.arguments = bundle
+        // 遷移処理
+        //parentFragmentManager.beginTransaction()
+        //   .add(R.id.container, fragment)
+        //    .commit()
 }
 
 
