@@ -53,7 +53,7 @@ class HardWareResultFragment:Fragment() {
         })
 
         base_back_button.setOnClickListener {
-            findNavController().navigate(R.id.hardWareBaseFragment)
+            findNavController().navigate(R.id.baseFragment)
         }
 
         //score = arguments?.getInt("RIGHT_ANSWER_COUNT", 0) ?: 0

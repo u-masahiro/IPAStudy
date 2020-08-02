@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/pagerBaseFragment">
+    app:startDestination="@id/baseFragment">
 
     <fragment
-        android:id="@+id/pagerBaseFragment"
-        android:name="com.example.ipastudy.view.PagerBaseFragment"
+        android:id="@+id/baseFragment"
+        android:name="com.example.ipastudy.view.BaseFragment"
         android:label="fragment_pager_base"
         tools:layout="@layout/fragment_pager_base">
         <action
@@ -61,8 +61,8 @@
         android:label="fragment_hardware_result"
         tools:layout="@layout/fragment_hardware_result">
         <action
-            android:id="@+id/action_hardWareResultFragment_to_hardWareBaseFragment"
-            app:destination="@id/hardWareBaseFragment" />
+            android:id="@+id/action_BaseFragment_pop"
+            app:popUpTo="@id/baseFragment" />
     </fragment>
 
 </navigation>
