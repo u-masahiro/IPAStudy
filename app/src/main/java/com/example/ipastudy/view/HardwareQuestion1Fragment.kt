@@ -106,7 +106,7 @@ class HardwareQuestion1Fragment : Fragment() {
         quizArray.removeAt(randomNum)
     }
 
-    fun checkAnswer() {
+    private fun checkAnswer() {
         answerBtn1.setOnClickListener {
             val btnText: String = answerBtn1.text.toString()
             if (btnText == rightAnswer) {
@@ -115,20 +115,9 @@ class HardwareQuestion1Fragment : Fragment() {
             } else {
                 alertTitle = "不正解..."
             }
-            AlertDialog.Builder(activity) // FragmentではActivityを取得して生成
-                .setTitle(alertTitle)
-                .setMessage("答え : " + rightAnswer)
-                .setPositiveButton("OK") { dialog, which ->
-                    if (quizCount == QUIZ_COUNT) {
-                       register()
-                        //bundle.putInt("RIGHT_ANSWER_COUNT", rightAnswerCount);
-                    } else {
-                        quizCount++
-                        showNextQuiz()
-                    }
-                }
-                .show()
+            correctnessdialog()
         }
+        
         answerBtn2.setOnClickListener {
             val btnText: String = answerBtn2.text.toString()
             if (btnText == rightAnswer) {
@@ -137,19 +126,7 @@ class HardwareQuestion1Fragment : Fragment() {
             } else {
                 alertTitle = "不正解...";
             }
-            AlertDialog.Builder(activity) // FragmentではActivityを取得して生成
-                .setTitle(alertTitle)
-                .setMessage("答え : " + rightAnswer)
-                .setPositiveButton("OK") { dialog, which ->
-                    if (quizCount == QUIZ_COUNT) {
-                        register()
-                        //bundle.putInt("RIGHT_ANSWER_COUNT", rightAnswerCount);
-                    } else {
-                        quizCount++
-                        showNextQuiz()
-                    }
-                }
-                .show()
+            correctnessdialog()
         }
 
         answerBtn3.setOnClickListener {
@@ -160,20 +137,9 @@ class HardwareQuestion1Fragment : Fragment() {
             } else {
                 alertTitle = "不正解...";
             }
-            AlertDialog.Builder(activity) // FragmentではActivityを取得して生成
-                .setTitle(alertTitle)
-                .setMessage("答え : " + rightAnswer)
-                .setPositiveButton("OK") { dialog, which ->
-                    if (quizCount == QUIZ_COUNT) {
-                        register()
-                        //bundle.putInt("RIGHT_ANSWER_COUNT", rightAnswerCount);
-                    } else {
-                        quizCount++
-                        showNextQuiz()
-                    }
-                }
-                .show()
+            correctnessdialog()
         }
+        
         answerBtn4.setOnClickListener {
             val btnText: String = answerBtn4.text.toString()
             if (btnText == rightAnswer) {
@@ -182,21 +148,26 @@ class HardwareQuestion1Fragment : Fragment() {
             } else {
                 alertTitle = "不正解..."
             }
-            AlertDialog.Builder(activity) // FragmentではActivityを取得して生成
-                .setTitle(alertTitle)
-                .setMessage("答え : " + rightAnswer)
-                .setPositiveButton("OK") { dialog, which ->
-                    if (quizCount == QUIZ_COUNT) {
-                        register()
-                        //bundle.putInt("RIGHT_ANSWER_COUNT", rightAnswerCount)
-                    } else {
-                        quizCount++
-                        showNextQuiz()
-                    }
-                }
-                .show()
+            correctnessdialog()
         }
     }
+    
+    private fun correctnessdialog(){
+        AlertDialog.Builder(activity) // FragmentではActivityを取得して生成
+            .setTitle(alertTitle)
+            .setMessage("答え : $rightAnswer")
+            .setPositiveButton("OK") { dialog, which ->
+                if (quizCount == QUIZ_COUNT) {
+                    register()
+                    //bundle.putInt("RIGHT_ANSWER_COUNT", rightAnswerCount)
+                } else {
+                    quizCount++
+                    showNextQuiz()
+                }
+            }
+            .show()
+    }
+    
     private fun register() {
         val score = Score(rightAnswerCount,rightAnswerCount)
         viewModel.setScores(score)
