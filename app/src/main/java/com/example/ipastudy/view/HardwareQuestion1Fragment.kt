@@ -15,6 +15,8 @@ import kotlinx.android.synthetic.main.fragment_hardware_question_1.*
 import java.util.*
 import kotlin.collections.ArrayList
 import android.app.AlertDialog
+import com.example.ipastudy.model.TotalScore
+import com.example.ipastudy.viewModel.TotalScoreViewModel
 
 class HardwareQuestion1Fragment : Fragment() {
 
@@ -29,6 +31,7 @@ class HardwareQuestion1Fragment : Fragment() {
     var quizArray: ArrayList<ArrayList<String>> = ArrayList()
 
     private val viewModel: ScoreViewModel by activityViewModels()
+    private val totalScoreViewModel:TotalScoreViewModel by activityViewModels()
 
     private var quizData = arrayOf(
         arrayOf(
@@ -169,8 +172,12 @@ class HardwareQuestion1Fragment : Fragment() {
     }
     
     private fun register() {
-        val score = Score(rightAnswerCount,rightAnswerCount)
+        val score = Score(rightAnswerCount)
         viewModel.setScores(score)
+
+        val totalScore = TotalScore(rightAnswerCount)
+        totalScoreViewModel.setTotalScore(totalScore)
+
         findNavController().navigate(R.id.hardWareResultFragment)
     }
         // Fragmentに値をセットする

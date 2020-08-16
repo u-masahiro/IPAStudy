@@ -12,7 +12,7 @@ class ResultAdapter(private val scoreList: MutableList<Score>): RecyclerView.Ada
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         val resultRightAnswer: TextView = view.findViewById(R.id.item_result_right_answer)
-        val resultTotalScore: TextView = view.findViewById(R.id.item_result_total_score)
+        //val resultTotalScore: TextView = view.findViewById(R.id.item_result_total_score)
     }
 
     // レイアウトの設定
@@ -26,7 +26,7 @@ class ResultAdapter(private val scoreList: MutableList<Score>): RecyclerView.Ada
         val score = scoreList[position]
 
         viewHolder.resultRightAnswer.text = score.right_answer.toString()
-        viewHolder.resultTotalScore.text = score.total_score.toString()
+       // viewHolder.resultTotalScore.text = score.total_score.toString()
     }
     // 表示数を返す
     override fun getItemCount() = scoreList.size

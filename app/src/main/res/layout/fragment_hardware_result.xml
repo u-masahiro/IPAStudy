@@ -21,6 +21,15 @@
             android:layout_marginTop="60dp"
             android:orientation="horizontal"/>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/total_score_recycler_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_result_total_score"
+            android:layout_marginTop="60dp"
+            android:orientation="horizontal"
+            />
+
         <!--<TextView
             android:id="@+id/resultLabel"
             android:layout_width="wrap_content"
