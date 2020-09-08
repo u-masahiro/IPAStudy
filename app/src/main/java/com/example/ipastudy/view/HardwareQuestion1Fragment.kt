@@ -1,5 +1,6 @@
 package com.example.ipastudy.view
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_hardware_question_1.*
 import java.util.*
 import kotlin.collections.ArrayList
 import android.app.AlertDialog
+import android.content.Intent
 import com.example.ipastudy.model.TotalScore
 import com.example.ipastudy.viewModel.TotalScoreViewModel
 
@@ -174,9 +176,14 @@ class HardwareQuestion1Fragment : Fragment() {
     private fun register() {
         val score = Score(rightAnswerCount)
         viewModel.setScores(score)
-
         val totalScore = TotalScore(rightAnswerCount)
         totalScoreViewModel.setTotalScore(totalScore)
+
+        //Room用のコード
+        val replyIntent = Intent()
+        val totalScoreString = totalScore.toString()
+        replyIntent.putExtra(EXTRA_REPLY, totalScoreString)
+        activity?.setResult(Activity.RESULT_OK, replyIntent)
 
         findNavController().navigate(R.id.hardWareResultFragment)
     }
@@ -187,6 +194,9 @@ class HardwareQuestion1Fragment : Fragment() {
         //parentFragmentManager.beginTransaction()
         //   .add(R.id.container, fragment)
         //    .commit()
+        companion object {
+            const val EXTRA_REPLY = "com.example.android.wordlistsql.REPLY"
+        }
 }
 
 

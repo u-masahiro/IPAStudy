@@ -6,4 +6,5 @@
     <string name="study">教科書を読む</string>
     <string name="question">問題を解く</string>
     <string name="range">どの範囲を勉強しますか？</string>
+    <string name="empty_not_saved">Word not saved because it is empty.</string>
 </resources>
